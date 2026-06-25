@@ -98,6 +98,7 @@ simple_shop_api/
 
 ## Примеры запросов
 ### Создать товар
+```json
 curl -X POST "http://127.0.0.1:8000/products/" \
 -H "Content-Type: application/json" \
 -d '{
@@ -106,7 +107,9 @@ curl -X POST "http://127.0.0.1:8000/products/" \
   "price": 4500,
   "stock": 10
 }'
+```
 * Пример ответа:
+```json
 {
   "product_id": 1,
   "name": "Keyboard",
@@ -114,11 +117,15 @@ curl -X POST "http://127.0.0.1:8000/products/" \
   "price": 4500,
   "stock": 10
 }
+```
 
 ### Получить список товаров
+```json
 curl -X GET "http://127.0.0.1:8000/products/"
+```
 
 * Пример ответа:
+```json
 [
   {
     "product_id": 1,
@@ -128,25 +135,34 @@ curl -X GET "http://127.0.0.1:8000/products/"
     "stock": 10
   }
 ]
+```
 
 ### Получить товар по id
+```json
 curl -X GET "http://127.0.0.1:8000/products/1"
+```
 ### Обновить товар
+```json
 curl -X PATCH "http://127.0.0.1:8000/products/1" \
 -H "Content-Type: application/json" \
 -d '{
   "price": 3990,
   "stock": 15
 }'
+```
 ### Удалить товар
+```json
 curl -X DELETE "http://127.0.0.1:8000/products/1"
+```
 
 * Пример ответа:
+```json
 {
   "message": "Product with id=1 was successfully deleted"
 }
-
+```
 ### Создать заказ
+```json
 curl -X POST "http://127.0.0.1:8000/orders/" \
 -H "Content-Type: application/json" \
 -d '{
@@ -157,18 +173,21 @@ curl -X POST "http://127.0.0.1:8000/orders/" \
     }
   ]
 }'
-
+```
 * Пример ответа:
+```json
 {
   "order_id": 1,
   "total": 9000,
   "status": "created"
 }
-
+```
 ### Получить список заказов
+```json
 curl -X GET "http://127.0.0.1:8000/orders/"
-
+```
 * Пример ответа:
+```json
 [
   {
     "order_id": 1,
@@ -187,8 +206,11 @@ curl -X GET "http://127.0.0.1:8000/orders/"
     ]
   }
 ]
+```
 ### Получить заказ по id
+```json
 curl -X GET "http://127.0.0.1:8000/orders/1"
+```
 
 ## Основные эндпоинты
 ### Products
