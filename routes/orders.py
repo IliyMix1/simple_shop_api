@@ -12,15 +12,17 @@ order_router = APIRouter(prefix='/orders', tags=['Orders'])
 @order_router.post('/')
 async def create_order(schema: CreateOrder, session: AsyncSession = Depends(get_session)):
     #Достаём id всех продуктов, переданных пользователем
-    product_ids = [item.product_id for item in schema.items]
+    product_ids_raw = [item.product_id for item in schema.items]
+
+    #Чтобы избавить от дублирования - сначала первращаем список во множество, а потом обратно
+    product_ids = list(set(product_ids_raw))
     #Получаем все записи с нужными product_id
     result = await session.execute(
         select(Product).where(Product.product_id.in_(product_ids))
     )
     products = result.scalars().all()
 
-    #Для удобства составляем словарь {id: продукт}
-    #for product in products:
+    #Для удобства составляем словарь {id: продукт}s
     products_by_id = {
         product.product_id: product
         

@@ -16,10 +16,10 @@ class ReadProduct(BaseModel):
     stock:       int 
 
 class PatchProduct(BaseModel):
-    name:        str   | None = None
-    description: str   | None = None
-    price:       float | None = None
-    stock:       int   | None = None
+    name:        str   | None = Field(min_length=2, max_length=100, default=None)
+    description: str   | None = Field(min_length=2, default=None) 
+    price:       float | None = Field(gt=0, default=None)
+    stock:       int   | None = Field(ge=0, default=None)
 
 
 class CreateOrderItem(BaseModel):
